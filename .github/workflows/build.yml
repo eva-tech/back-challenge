@@ -1,0 +1,13 @@
+name: Build, Lint and Test
+
+on: [push]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - name: Run Lint
+              run: black .
+            - name: Run Tests
+              run: python manage.py
