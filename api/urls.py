@@ -1,7 +1,9 @@
-from django.urls import path
+from django.urls import path, include
 
-from . import views
+from api.views import StudyView, StudyDetail
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('studies/', StudyView.as_view()),
+    path('studies/<int:pk>/', StudyDetail.as_view()),
+    path('api-auth/', include('rest_framework.urls'))
 ]
