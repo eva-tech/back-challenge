@@ -1,13 +1,13 @@
 name: Build, Lint and Test
 
-on: [push]
+on: [ push ]
 
 jobs:
     build:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v2
-            - name: Run Lint
-              run: black .
-            - name: Run Tests
-              run: python manage.py
+            -   uses: actions/checkout@v2
+            -   name: Run & build Image
+                run: docker-compose up -d
+            -   name: Run Tests
+                run: docker exec core python manage.py test . --parallel
